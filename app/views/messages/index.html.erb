@@ -1,0 +1,27 @@
+<h1>List of Messages</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Chat ID</th>
+      <th>User ID</th>
+      <th>Body</th>
+      <th>Created At</th>
+      <th>Uptaded At</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @messages.each do |message| %>
+      <tr>
+        <td><%= message.id %></td>
+        <td><%= message.chat_id %></td>
+        <td><%= message.user_id %></td>
+        <td><%= message.body %></td>
+        <td><%= message.created_at.strftime("%Y-%m-%d") %></td>
+        <td><%= message.updated_at.strftime("%Y-%m-%d") %></td>
+        <td><%= link_to 'Show', "/messages/#{message.id}", class: 'btn btn-info' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

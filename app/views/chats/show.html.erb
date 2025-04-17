@@ -1,0 +1,17 @@
+<h1>Chat Details</h1>
+
+<div class="card">
+    <div class="card-header">
+        <%= @chat.id %>
+    </div>
+  <div class="card-body">
+    <ul>
+        <li><%= @chat.sender_id %></li>
+        <li><%= @chat.receiver_id %></li>
+        <li><%= @chat.created_at %></li>
+        <li><%= @chat.updated_at %></li>
+    </ul>
+  </div>
+  <%= link_to 'Back', chats_path, class: 'btn btn-danger' %>
+</div>
+

@@ -1,0 +1,18 @@
+<h1>User Details</h1>
+
+<div class="card">
+    <div class="card-header">
+        <%= @user.id %>
+    </div>
+  <div class="card-body">
+    <ul>
+        <li><%= @user.email %></li>
+        <li><%= @user.first_name %></li>
+        <li><%= @user.last_name %></li>
+        <li><%= @user.created_at %></li>
+        <li><%= @user.updated_at %></li>
+    </ul>
+  </div>
+  <%= link_to 'Back', users_path, class: 'btn btn-danger' %>
+</div>
+

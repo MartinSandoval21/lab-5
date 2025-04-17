@@ -1,0 +1,26 @@
+<h1>List of Chats</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Sender ID</th>
+      <th>Receiver ID</th>
+      <th>Created At</th>
+      <th>Uptaded At</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @chats.each do |chat| %>
+      <tr>
+        <td><%= chat.id %></td>
+        <td><%= chat.sender_id %></td>
+        <td><%= chat.receiver_id %></td>
+        <td><%= chat.created_at.strftime("%Y-%m-%d") %></td>
+        <td><%= chat.updated_at.strftime("%Y-%m-%d") %></td>
+        <td><%= link_to 'Show', "/chats/#{chat.id}", class: 'btn btn-info' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
