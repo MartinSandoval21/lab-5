@@ -21,8 +21,9 @@
         <td><%= user.last_name %></td>
         <td><%= user.created_at.strftime("%Y-%m-%d") %></td>
         <td><%= user.updated_at.strftime("%Y-%m-%d") %></td>
-        <td><%= link_to 'Show', "/users/#{user.id}", class: 'btn btn-info' %></td>
+        <td><%= link_to 'Show', user_path(user), class: 'btn btn-info' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<%= link_to 'New User', new_user_path, class: 'btn btn-info' %></td>

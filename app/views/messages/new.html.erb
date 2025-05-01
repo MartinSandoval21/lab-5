@@ -1,0 +1,29 @@
+<%= form_with(model: @message) do |form| %>
+    <% if @message.errors.any? %>
+      <div class="p-3 mb-3 bg-danger text-white rounded">
+        <ul class="mb-0">
+          <% @message.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class="mb-3">
+      <%= form.label :chat_id, class: "form-label" %>
+      <%= form.text_field :chat_id, class: "form-control" %>
+    </div>
+  
+    <div class="mb-3">
+      <%= form.label :user_id, class: "form-label" %>
+      <%= form.text_field :user_id, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+    <%= form.label :body, class: "form-label" %>
+    <%= form.text_field :body, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.submit "Save", class: "btn btn-primary" %>
+    </div>
+  <% end %>
