@@ -1,0 +1,16 @@
+<%= form_with(model: @chat) do |form|%>
+
+    <div class="mb-3">
+      <%= form.label :sender_id, class: "form-label" %>
+      <%= form.text_field :sender_id, class: "form-control" %>
+    </div>
+  
+    <div class="mb-3">
+      <%= form.label :receiver_id, class: "form-label" %>
+      <%= form.text_field :receiver_id, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.submit "Save", class: "btn btn-success" %>
+    </div>
+  <% end %>

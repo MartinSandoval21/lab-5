@@ -1,28 +1,32 @@
-<h1>List of Messages</h1>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Chat ID</th>
-      <th>User ID</th>
-      <th>Body</th>
-      <th>Created At</th>
-      <th>Uptaded At</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @messages.each do |message| %>
+<div class="container">
+  <h1>List of Messages</h1>
+  <%= link_to 'New Message', new_message_path, class: 'btn btn-info' %></td>
+</div>
+<div class="container">
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= message.id %></td>
-        <td><%= message.chat_id %></td>
-        <td><%= message.user_id %></td>
-        <td><%= message.body %></td>
-        <td><%= message.created_at.strftime("%Y-%m-%d") %></td>
-        <td><%= message.updated_at.strftime("%Y-%m-%d") %></td>
-        <td><%= link_to 'Show', message_path(message), class: 'btn btn-info' %></td>
+        <th>ID</th>
+        <th>Chat ID</th>
+        <th>User ID</th>
+        <th>Body</th>
+        <th>Created At</th>
+        <th>Uptaded At</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= link_to 'New Message', new_message_path, class: 'btn btn-info' %></td>
+    </thead>
+    <tbody>
+      <% @messages.each do |message| %>
+        <tr>
+          <td><%= message.id %></td>
+          <td><%= message.chat_id %></td>
+          <td><%= message.user_id %></td>
+          <td><%= message.body %></td>
+          <td><%= message.created_at.strftime("%Y-%m-%d") %></td>
+          <td><%= message.updated_at.strftime("%Y-%m-%d") %></td>
+          <td><%= link_to 'Show', message_path(message), class: 'btn btn-info' %></td>
+          <td><%= link_to 'Edit', edit_message_path(message), class: 'btn btn-info' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
