@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
+    before_action :authenticate_user!
     before_action :set_user, only: [:show, :edit]
+    load_and_authorize_resource
     def edit
     end
     def update
@@ -30,10 +32,13 @@ class UsersController < ApplicationController
     def show
         @chats = @user.chats.includes(:sender, :receiver, :messages).order(updated_at: :desc)
     end
+    def destroy
+        @user.destroy
+        redirect_to users_path, notice: 'User was successfully deleted.'
+    end
     private
-  
     def user_params
-      params.require(:user).permit(:email, :first_name, :last_name)
+        params.require(:user).permit(:email, :first_name, :last_name)
     end
     def set_user
         @user = User.find(params[:id])

@@ -1,5 +1,7 @@
 class MessagesController<ApplicationController
-    before_action :set_message, only: [:show, :edit]
+    before_action :authenticate_user!
+    before_action :set_message, only: [:show, :edit,:destroy]
+    load_and_authorize_resource
     def edit
     end
     def update
@@ -27,6 +29,10 @@ class MessagesController<ApplicationController
         @messages = Message.all
     end
     def show
+    end
+    def destroy
+        @message.destroy
+        redirect_to messages_path, notice: 'Message was successfully deleted.'
     end
     private
     def message_params

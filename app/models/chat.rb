@@ -3,7 +3,8 @@ class Chat < ApplicationRecord
     belongs_to :sender, class_name: 'User'
     belongs_to :receiver, class_name: 'User'
     validates :sender_id, :receiver_id, presence: true
-    validates :different_users
+    validate :different_users
+    validate :unique_participants_pair
 
     private
     def different_users
@@ -13,4 +14,13 @@ class Chat < ApplicationRecord
             errors.add(:base, "Sender and receiver must be different users")
         end
     end
+    def unique_participants_pair
+        if Chat.where.not(id: id)
+            .where("(sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?)", 
+                    sender_id, receiver_id, receiver_id, sender_id)
+            .exists?
+        errors.add(:base, "A chat between these users already exists")
+        end
+    end
+
 end

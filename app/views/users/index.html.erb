@@ -13,8 +13,6 @@
         <th>Created At</th>
         <th>Uptaded At</th>
         <th>Messages Count</th>
-        <th>Show Link</th>
-        <th>Edit Link</th>
 
       </tr>
     </thead>
@@ -30,9 +28,10 @@
           <td><%= user.updated_at.strftime("%Y-%m-%d") %></td>
           <td><%= user.messages.count %> </td>
           <td><%= link_to 'Show', user_path(user), class: 'btn btn-info' %></td>
-          <td><%= link_to 'Edit', edit_user_path(user), class: 'btn btn-info' %>
-          
-          </td>
+          <% if can? :edit, user %>
+            <td><%= link_to 'Edit', edit_user_path(user), class: 'btn btn-info' %></td>
+          <% end %>
+
         </tr>
       <% end %>
     </tbody>

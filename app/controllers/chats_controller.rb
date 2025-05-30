@@ -1,5 +1,6 @@
 class ChatsController<ApplicationController
-    before_action :set_chat, only: [:show, :edit]
+    before_action :authenticate_user!
+    before_action :set_chat, only: [:show, :edit,:destroy]
     def edit
     end
     def update
@@ -22,6 +23,10 @@ class ChatsController<ApplicationController
             flash[:alert] = @chat.errors.full_messages.join(", ")
             redirect_to new_chat_path
         end
+    end
+    def destroy
+        @chat.destroy
+        redirect_to chats_path, notice: 'Chat was successfully deleted.'
     end
     def index
         @chats = Chat.all

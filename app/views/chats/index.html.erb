@@ -23,7 +23,10 @@
           <td><%= chat.created_at.strftime("%Y-%m-%d") %></td>
           <td><%= chat.updated_at.strftime("%Y-%m-%d") %></td>
           <td><%= link_to 'Show', chat_path(chat), class: 'btn btn-info' %></td>
-          <td><%= link_to 'Edit', edit_chat_path(chat), class: 'btn btn-info' %></td>
+          <% if can? :edit, chat %>
+            <td><%= link_to 'Edit', edit_chat_path(chat), class: 'btn btn-info' %></td>
+          <% end %>
+
         </tr>
       <% end %>
     </tbody>
