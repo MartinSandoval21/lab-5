@@ -1,6 +1,7 @@
 class ChatsController<ApplicationController
     before_action :authenticate_user!
     before_action :set_chat, only: [:show, :edit,:destroy]
+    load_and_authorize_resource
     def edit
     end
     def update
@@ -29,7 +30,7 @@ class ChatsController<ApplicationController
         redirect_to chats_path, notice: 'Chat was successfully deleted.'
     end
     def index
-        @chats = Chat.all
+        @chats = Chat.involving(current_user)
     end
     def show
         @chat = Chat.includes(:sender, :receiver, :messages).find(params[:id])

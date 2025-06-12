@@ -5,9 +5,9 @@ class Ability
     return unless user.present?
 
     # Chats
-    can [:read,:create], Chat
-    can [:new,:edit,:update,:destroy],Chat , sender_id: user.id
-    can [:new,:edit,:update,:destroy],Chat , receiver_id: user.id
+    can [:create], Chat
+    can [:new,:read,:edit,:update,:destroy],Chat , sender_id: user.id
+    can [:new,:read,:edit,:update,:destroy],Chat , receiver_id: user.id
 
 
 
@@ -24,6 +24,6 @@ class Ability
 
     # User
     can :read, User
-    can [:new,:update, :edit,:destroy], User, id: user.id
+    can [:new,:read,:update, :edit,:destroy], User, id: user.id
   end
 end

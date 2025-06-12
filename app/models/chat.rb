@@ -5,7 +5,11 @@ class Chat < ApplicationRecord
     validates :sender_id, :receiver_id, presence: true
     validate :different_users
     validate :unique_participants_pair
-
+    scope :involving, ->(user) {
+        where(sender: user).or(where(receiver: user))}
+    def other_participant(current_user)
+        sender == current_user ? receiver : sender
+    end
     private
     def different_users
         return unless sender && receiver 
@@ -22,5 +26,6 @@ class Chat < ApplicationRecord
         errors.add(:base, "A chat between these users already exists")
         end
     end
+
 
 end

@@ -7,6 +7,7 @@
     <thead>
       <tr>
         <th>ID</th>
+        <th>Other User</th>
         <th>Sender ID</th>
         <th>Receiver ID</th>
         <th>Created At</th>
@@ -18,6 +19,7 @@
       <% @chats.each do |chat| %>
         <tr>
           <td><%= chat.id %></td>
+          <td><%= chat.other_participant(current_user).full_name %></td>
           <td><%= chat.sender_id %></td>
           <td><%= chat.receiver_id %></td>
           <td><%= chat.created_at.strftime("%Y-%m-%d") %></td>
